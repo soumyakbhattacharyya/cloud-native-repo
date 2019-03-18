@@ -26,3 +26,14 @@
 * new users get access key and secret key access key to be able to use the API
 * always set up multi - factor authentication on root account
 * it is possible to create and customize own password rotation policy
+
+### Storage
+
+* what is s3
+ * Simple Storage Service is a secure, durable and highly - scalable object storage
+* can you install operating system etc. in s3
+ * no, S3 is an object store and not a block based store
+* what is the highest size of file stored in S3
+ * 5 tb
+* what is a bucket
+ * a bucket is a folder structure within S3
