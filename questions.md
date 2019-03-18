@@ -37,3 +37,18 @@
   * 5 tb
 * what is a bucket
   * a bucket is a folder structure within S3
+* what is difference between bucket and folder
+  * it has a global unique name of the following format http://s3-region.amazonaws.com/bucket-name
+* which http status code is returned when file is updated
+  * 200
+* what is the consistency model
+  * for new object read happens after write (read after write consistency)
+  * eventual consistency for overwrite puts and deletes 
+* what are various attributes of object
+  * key (the name)
+  * value
+  * version id
+  * metadata
+  * subresources
+    * acl
+  
