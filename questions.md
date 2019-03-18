@@ -83,6 +83,9 @@
   * no, after being enabled versioning can only be suspended
 * what is lifecycle policy for the bucket
   * the lifecycle policy of an bucket, defines rules that applies to object, in terms of when the objects get transitioned to a cheaper storage class
+  * can be done, with or without versioning
+  * can be applied with current and previous version
+  * can be set to expire 
 * what is server access logging
 * what is object level logging
 * what is default encryption
@@ -90,4 +93,9 @@
 * what is tags
 * what is events
 * what is requester pays
+* what is cross region replication
+  * cross region replication is a way to save selected or entire content of a bucket into another bucket in different region
+  * note that cross region replication, will affect new & updated files only, delete does not get automatically replicated
+  * delete markers are not replicated
+  * deleting individual file or version will not be replicated 
   
