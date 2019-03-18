@@ -72,5 +72,22 @@
   * data transfer pricing 
 * what is S3 transfer accelaration
   * S3 transfer accelaration is a method using which user uploads file to closest edge location; further the files are trasferred to target S3 bucket using Amazon Network backbone. This way users do not have to directly upload files to target S3 bucket.
-   
+* can we deploy the s3 to specific region
+  * yes
+* after creating a bucket with default setting for public access, how can we make an object belonging to the bucket public?
+  * by default a bucket and object are private
+  * an object can not be made publicly accessible unless, the bucket that contains it is publicly accessible
+* what is versioning
+  * versioning is a way of keeping multiple version of same object inside an S3 bucket
+* after enabling versioning can you disable it
+  * no, after being enabled versioning can only be suspended
+* what is lifecycle policy for the bucket
+  * the lifecycle policy of an bucket, defines rules that applies to object, in terms of when the objects get transitioned to a cheaper storage class
+* what is server access logging
+* what is object level logging
+* what is default encryption
+* what is object lock
+* what is tags
+* what is events
+* what is requester pays
   
