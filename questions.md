@@ -38,7 +38,7 @@
 * what is a bucket
   * a bucket is a folder structure within S3
 * what is difference between bucket and folder
-  * it has a global unique name of the following format http://s3-region.amazonaws.com/bucket-name
+  * bucket has a global unique name of the following format http://s3-region.amazonaws.com/bucket-name
 * which http status code is returned when file is updated
   * 200
 * what is the consistency model
@@ -51,4 +51,26 @@
   * metadata
   * subresources
     * acl
+    * torrent
+* what is the SLA for S3
+  * 99.99% for availability
+  * 11-9 durability for files
+  * tiered storage
+  * lifecycle management
+  * versioning
+  * encryption
+  * controllable using acl (for individual file) or bucket control list 
+* what are storage tiers
+  * S3 Standard (has no retrival cost)
+  * S3 IA (infrequently accessed)
+  * S3 One Zone - IA - kept in one zone, cheaper than former two
+  * glacier - Expedited, Standard or Bulk; issue is the retrieval time 
+* what are we charged for S3
+  * storage
+  * requests
+  * storage management pricing 
+  * data transfer pricing 
+* what is S3 transfer accelaration
+  * S3 transfer accelaration is a method using which user uploads file to closest edge location; further the files are trasferred to target S3 bucket using Amazon Network backbone. This way users do not have to directly upload files to target S3 bucket.
+   
   
