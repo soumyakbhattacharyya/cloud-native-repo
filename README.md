@@ -1,4 +1,34 @@
 # Questions
+
+## System Design
+### Scalability
+
+* what is web hosting 
+  * web hosting is a solution where your solution is served from a compute resource, shared with others
+  * the difference between web hosting and infrastructure as service is, in case of web hosting it is impossible to choose the operating system of the compute, and also, there is no hypervisor involved which partitions a physical resource into smaller number of virtual machines 
+* what is vertical scaling
+  * vertical scaling is a way to beef up, available, RAM, CPU and Harddrive capacity of a machine 
+* what is horizontal scaling
+  * horizontal scaling refers to having a set of cheap commodity hardware that tackle the load by spreading it across them
+  * uses multiple servers for the topology 
+  * it requires a conduit to seat between internet and the set of servers; a black box called as load balancer, to distribute the inbound traffic to multiple servers
+  * this way the load balancer requires to have public ip address
+  * the server fleet can have private IP addresses
+* what is load balancing & caching
+  * load balancers typically distribute load to one of the multiple servers
+  * load balancers can be hardware and software type
+  * load balancers uses algorithm like round - robin to distribute traffic
+  * if one of the worker process consumes a lot it is possible to have one server getting whole lot of requests to serve, eventually becoming to be a bottleneck
+  * caching adds to this problem, by always redirecting requests from a specific host to one designated target
+  * TTL or time to leave expires the cache affinity
+* what is shared session state
+  * now any shared session related solutions breaks as session is typically stored in first server where user's request landed, if the next time a different server is chosen, the session requires to be re-initialized 
+* what is RAID
+  * 
+* what is shared storage tech
+* what is database replication
+* what is load balancing tech
+
 ## AWS
 ### IAM
 
