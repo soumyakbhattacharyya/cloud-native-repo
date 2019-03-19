@@ -24,7 +24,17 @@
 * what is shared session state
   * now any shared session related solutions breaks as session is typically stored in first server where user's request landed, if the next time a different server is chosen, the session requires to be re-initialized 
 * what is RAID
-  * 
+  * sessions can be stored in a shared file server using technology like RAID (Redundant Array of Indepedndent Disk)
+  * RAID0
+    * 2 identical harddrive where you stripe data accross them; which is effectively writing pieces of the whole data partly first into one drive and then to the next drive; the speed at which files are being written doubles
+  * RAID1
+    * 2 identical harddrive, where one drive works as mirror of the other
+  * RAID5
+    * variance of RAID1; versatile as consists of 3 - 5 drives where 1 is being used for redundancy 
+  * RAID6
+    * variance of RAID1; versatile as consists of 3 - 5 drives where 2 is being used for redundancy
+  * RAID10
+    * 4 identical drives, the solution is a combination of 0 and 1
 * what is shared storage tech
 * what is database replication
 * what is load balancing tech
