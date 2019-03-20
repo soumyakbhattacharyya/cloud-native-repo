@@ -36,8 +36,39 @@
   * RAID10
     * 4 identical drives, the solution is a combination of 0 and 1
 * what is shared storage tech
+  * NFS is a shared storage tech
 * what is database replication
+  * database replication can be used track metadata about user's session
 * what is load balancing tech
+  * load balancer options are ELB and HAProxy
+  * hardwire load balancers are extremely expensive
+* what is session affinity
+  * cookies can offer solution to sticky session challenge (which is being able to always route traffic to the same server)
+  * cookies are small in size; can we save id of the server inside the cookie 
+  * cookies are stored in user's browsser and gets transmitted back to the server when request is being made
+  * instead of putting IP address of the server (which serves the user's request), a random number can be inserted into the cookie by the load balancer itself so that when cookie comes back to the load balancer, it can find the random number, find the server that corresponds to the random number and route the request to appropriate destination server
+* how to enable caching in mysql
+  * by enabing query cache
+* what is memcache
+  * it is memory cache; runs in RAM; has support for all major programming platform
+  * problem is cache can turn such big that it can not be further stored in RAM
+* what are the storage engine of mysql
+  * There are two chief storage engines of MySQL, MyISM and InnoDB; they are essentially two different storage mechanism
+  * ÌnnoDB supports transaction and MyISM does not
+  * The other options are memory - that stores the data in RAM; archive - it is compressed by default, slower than other engines; that way it saves space
+* what is replication, what are the common topology around it
+  * replication is creating copy of a master into slave record
+  * the slaves can be load balanced while they primarily support read operations
+  * load balancers in turn can stay in active - active or active - passive mode
+  * active - active is when two load balancers are both actively serving traffic
+  * active - passive is the scenario, when the passive one takes over the active one, after the active one dies
+* what is partitioning 
+  * partitionaing is a common paradim of splitting data into separate database schema 
+* why switches are required
+  * typically all machines (www, db, lb) connects via couple of switches (to ensure redundancy)
+* why do we have redundant data center 
+  * to avoid 
+  
 
 ## AWS
 ### IAM
