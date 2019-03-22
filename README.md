@@ -67,7 +67,16 @@
 * why switches are required
   * typically all machines (www, db, lb) connects via couple of switches (to ensure redundancy)
 * why do we have redundant data center 
-  * to avoid 
+  * to avoid single point of failure problem for data centers
+* what is cloning
+  * Cloning is the first step towards scaling number of server instances that serve web application. Typically web servers deployed behind load balancers serves web requests. To accommodate scale number of web servers requires to be multiple in number. The number needs to scale in accordance to the increasing number of web requests coming in. This is the reason, why the applications should be stateless and keep user specific data like session state to external shared store like redis.
+* what is the role of database behind scalability
+  * once cloning has been achieved that next bottleneck will be database, if we are using mysql or any relational database, we need to scale database using master - slave model, where writes happen with master and reads happen with slaves. Beyond that sharding, denormalization and sql tuning are the way to achieve further scalability requirement. The alterative to this path is using NoSQL data stores, where the application has to make the joins in stead of database offering the same out of the box. But there is a cap to the scalability that may be achieved by this. Beyond this we will require caching.
+* what is the role of caching as a factor that ensures scalability
+  * Caching is the third armor to attain scalability. Caching usually happens in two of the available forms. Database caching is all about caching the query and resultset. It has the challenge of when to expire the cache, as there can be more than one factor that may require the cache to get invalidated. Object caching is the more favourable, whereby information fetched from database, are aggregated into an in - memory representation, and cached for a period of time to leave. Redis and memcahed are two solutions that supports this. Redis is favored over memcached for it's capability to behave as database.
+* what is the role of asynchronism as a factor that ensures scalabality
+  * Asynchronism is a way to well, do thing asynchronously.   
+
   
 
 ## AWS
