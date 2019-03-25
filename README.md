@@ -76,7 +76,15 @@
   * Caching is the third armor to attain scalability. Caching usually happens in two of the available forms. Database caching is all about caching the query and resultset. It has the challenge of when to expire the cache, as there can be more than one factor that may require the cache to get invalidated. Object caching is the more favourable, whereby information fetched from database, are aggregated into an in - memory representation, and cached for a period of time to leave. Redis and memcahed are two solutions that supports this. Redis is favored over memcached for it's capability to behave as database.
 * what is the role of asynchronism as a factor that ensures scalabality
   * Asynchronism is a way to well, do thing asynchronously.   
-
+* what is difference between performance and scalability
+  * If a system is slow in general, it is a performance problem, if it is fast for one user, but slow for multiple users, it is a scalability problem
+* what is scalability
+  * a service is said to be scalable if its capacity to process workload increases in proportion to the number of resources being added
+  * for an always on service, where resources are being added to ensure redundancy, the service is said to be scalable, if adding resource does not reduce performance
+* why is scalability so difficult to achive
+  * scalability concerns requires to be taken into account right at the stage when software is being implemented
+  * the axes that requires scalability needs to be identified upfront
+  * measures taken to ensure redundancy and factors like growing heterogeneity of infrastructure platforms causes sclability to get affected; making it all the more harder
   
 
 ## AWS
