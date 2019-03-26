@@ -86,6 +86,15 @@
   * the axes that requires scalability needs to be identified upfront
   * measures taken to ensure redundancy and factors like growing heterogeneity of infrastructure platforms causes sclability to get affected; making it all the more harder
   
+## System Design
+
+* WhatsApp (Chat solution)
+  * http://highscalability.com/blog/2014/3/31/how-whatsapp-grew-to-nearly-500-million-users-11000-cores-an.html
+  * https://www.youtube.com/watch?v=vvhC64hQZMk
+  * Key Concepts
+    * API Gateway
+    * Websocket
+    * Load Balancer, Service Discovery, Authentication, Consistent Hashing, HTTP Websocket, Message Queue, Microservices, Polyglot Persistence
 
 ## AWS
 ### IAM
