@@ -88,6 +88,21 @@
   
 ## System Design
 
+* Foundational Concepts
+  * System Design Basics
+  * Key Attributes of Distributed System
+  * Load Balancing
+  * Caching
+  * Data Partitioning 
+  * Indexes
+  * Proxies
+  * Redundancy Vs. Replication
+  * SQL Vs. NoSQL
+  * CAP Theorem
+  * Consistent Hashing
+  * Long Polling Vs. Websocket Vs. Server Sent Event
+
+
 * WhatsApp (Chat solution)
   * http://highscalability.com/blog/2014/3/31/how-whatsapp-grew-to-nearly-500-million-users-11000-cores-an.html
   * https://www.youtube.com/watch?v=vvhC64hQZMk
