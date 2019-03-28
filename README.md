@@ -1,6 +1,6 @@
 # Questions
 
-## System Design
+## System Design 
 ### Scalability
 
 * what is web hosting 
@@ -163,7 +163,7 @@
   * metadata
   * subresources
     * acl
-    * torrent
+    * torrent    
 * what is the SLA for S3
   * 99.99% for availability
   * 11-9 durability for files
@@ -210,4 +210,32 @@
   * note that cross region replication, will affect new & updated files only, delete does not get automatically replicated
   * delete markers are not replicated
   * deleting individual file or version will not be replicated 
+  
+### Content Delivery Network
+* what is edge location
+  * edge location are those servers which caches the content; different than region/availabiity zone
+* what is orgin
+  * denotes the source from where the definitive version of the content is being served; can be S3/EC2,Route53 etc.
+  * in case of web content, S3/HTTP server running on EC2 can serve as origin
+  * for content that are being delivered over Amazon Media Server RTMP protocol, the origin is always S3
+* what is distribution
+  * the CDN which furnishes and distributes the file from origin to edge location
+* what is cloudfront
+  * cloudfront is a content distribution network, that can distribute content served from S3, EC2, Route53 and aws external origin server
+* how many types of distribution mechanism are there 
+  * web & rtmp (to stream media files using Adobe Flash Media Server's RTMP protocol)
+* what are the common use cases for using cloudfront
+  * to serve web application content
+  * to serve on demand videos or live streams
+  * to encrypt specific fields in the TBD
+  * to customize at the endge using lambda running at the edge location
+* how does cloudfront delivers content
+  * there are couple of ways in which cloudfront deliveres contents
+    * when a user request arrives, the request is precessed via aws backbone. edge location which can serve the content with minimum latency, is chosen to serve the request. the edge location verifies if the file is in it's cache, if yes starts serving it, if not, it forwards the request to origin server to serve the content
+    * to ensure faster serving of popular content, a regional edge cache is designed that sits in between the origin server and regional edge location; typically the regional edge cache has higher capacity to cache than regional edge location; making sure that most popular contents are being furnished right from the regional edge location
+    * the mechanism of getting content is similar; note, all proxy HTTP methods are directed straight to the origin via the edge location and does not go via regional edge cache
+* how are user billed for using cloudfront
+  * user is billed for storing data on S3, GETting content from cloudfront and performing PUT, POST, DELETE, PATCH, OPTION - ing to cloudfront
+  * it is possible to restrict user to be able to interact with cloudfront edge location which are cheaper than the other; at the cost of higher expense; however AWS ensures that user gets the content from the edge location with minimum latency, from the chosen cloudfront region
+  
   
