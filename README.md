@@ -115,13 +115,50 @@
 ### IAM
 
 * what are the services offered by IAM
+  * Centralized access management
+  * Shared access to AWS account 
+  * Granular access to AWS account
+  * Federated access management via LinkedIn, Facebook etc.
+  * MFA
+  * Temporary access
+  * Password rotation policy
+  * Integrates with other AWS services
+  * PSI DSS compliant
 * what are users, groups, policies and roles, in brief
+  * user is an entity who access a resource
+  * group is collection of users; user inherits group permission
+  * policy is a JSON representation of policy document; governs how user, group and roles access AWS resources
+  * role is associated with one aws resource in terms of accessing another aws resource
+* which is the region where latest products are lauched
+  * US East (North Virginia)
 * what is the sign in url; what is it being used for
+  * the sign in url represents the link that can be shared with users to login to AWS account
+  * this can be customized
+  * this name is globaly unique
+  * this is a publicly accessed url 
 * what is the root account
+  * god mode
+  * should be guarded with MFA
 * which region is guarded by IAM
-* what are the two kinds of permission that the newly created user has choise to be associated with
-* how can we assert the restriction on the password policies
-* what is user name, password, access key and secret access key
+  * global
+* what are the details that require to be provided while creating new user
+  * if the user is going to have programmatic (api driven) and / or aws management console acces 
+  * what would be the password for the user 
+  * if the user requires his password to be reset on first login
+* how does administrative policy would look like
+  * the administrative policy is looks as following
+    * ```
+      {
+       "Version": "1.0",
+       "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "*",
+          "Resource": "*"
+        }
+       ]      
+      }
+      ```
 * what are roles
 * why roles are being used for
 * how can you create a new billing alarm using cloudwatch
