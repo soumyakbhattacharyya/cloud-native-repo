@@ -147,7 +147,7 @@
   * if the user requires his password to be reset on first login
 * how does administrative policy would look like
   * the administrative policy is looks as following
-    * ```
+    * ```js
       {
        "Version": "1.0",
        "Statement": [
