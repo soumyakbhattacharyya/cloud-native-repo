@@ -100,6 +100,7 @@
   * SQL Vs. NoSQL
   * CAP Theorem
   * Consistent Hashing
+    * 
   * Long Polling Vs. Websocket Vs. Server Sent Event
 
 
@@ -159,9 +160,14 @@
        ]      
       }
       ```
-* what are roles
-* why roles are being used for
-* how can you create a new billing alarm using cloudwatch
+* how can password generation and management be customized
+  * by altering password policy
+* what is roles
+  * a way to ensure that one aws resource can access another aws service
+* what are various policies
+  * aws managed policy
+  * user managed policy
+  * job function based policies
 
 #### Notes
 
