@@ -1,9 +1,9 @@
 # Table of contents
 1. [Scalability](#Scalability)
 2. [Amazon Web Service](#AWS)
-2. [System Design](#SystemDesign)
-  1. [Consistent Hashing](#ConsistentHashing) 
-3. [Cloud Native Design](#CloudNative)
+3. [System Design](#SystemDesign)
+    1. [Consistent Hashing](#ConsistentHashing) 
+4. [Cloud Native Design](#CloudNative)
 
 # Questions
 
