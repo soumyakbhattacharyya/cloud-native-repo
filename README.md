@@ -183,91 +183,38 @@
   * aws managed policy
   * user managed policy
   * job function based policies
+* how can we restrict expenditure on aws
+  * the expenses can be retricted by creating a billing alarm
+  * before creating a billing alarm 'receive billing alert' needs to be enabled
+  * navigate to cloudwatch
+  * from billing section, select a matric EstimatedCharges and set a ceiling beyond which a notification is being sent
 
-#### Notes
-
-* IAM consists of User, Groups, Roles and Policies
-* Roles are for one AWS service to call another service
-* Permission is granted through policies
-* Policies are JSON document 
-* IAM is universal; agnostic of any specific region
-* root account is the one when you first set up AWS account
-* new users have no permission by default
-* new users get access key and secret key access key to be able to use the API
-* always set up multi - factor authentication on root account
-* it is possible to create and customize own password rotation policy
 
 ### Storage
 
 * what is s3
-  * Simple Storage Service is a secure, durable and highly - scalable object storage
-* can you install operating system etc. in s3
-  * no, S3 is an object store and not a block based store
-* what is the highest size of file stored in S3
-  * 5 tb
-* what is a bucket
-  * a bucket is a folder structure within S3
-* what is difference between bucket and folder
-  * bucket has a global unique name of the following format http://s3-region.amazonaws.com/bucket-name
-* which http status code is returned when file is updated
-  * 200
-* what is the consistency model
-  * for new object read happens after write (read after write consistency)
-  * eventual consistency for overwrite puts and deletes 
-* what are various attributes of object
-  * key (the name)
-  * value
-  * version id
-  * metadata
-  * subresources
-    * acl
-    * torrent    
-* what is the SLA for S3
-  * 99.99% for availability
-  * 11-9 durability for files
-  * tiered storage
-  * lifecycle management
-  * versioning
-  * encryption
-  * controllable using acl (for individual file) or bucket control list 
-* what are storage tiers
-  * S3 Standard (has no retrival cost)
-  * S3 IA (infrequently accessed)
-  * S3 One Zone - IA - kept in one zone, cheaper than former two
-  * glacier - Expedited, Standard or Bulk; issue is the retrieval time 
-* what are we charged for S3
-  * storage
-  * requests
-  * storage management pricing 
-  * data transfer pricing 
-* what is S3 transfer accelaration
-  * S3 transfer accelaration is a method using which user uploads file to closest edge location; further the files are trasferred to target S3 bucket using Amazon Network backbone. This way users do not have to directly upload files to target S3 bucket.
-* can we deploy the s3 to specific region
-  * yes
-* after creating a bucket with default setting for public access, how can we make an object belonging to the bucket public?
-  * by default a bucket and object are private
-  * an object can not be made publicly accessible unless, the bucket that contains it is publicly accessible
-* what is versioning
-  * versioning is a way of keeping multiple version of same object inside an S3 bucket
-* after enabling versioning can you disable it
-  * no, after being enabled versioning can only be suspended
-* what is lifecycle policy for the bucket
-  * the lifecycle policy of an bucket, defines rules that applies to object, in terms of when the objects get transitioned to a cheaper storage class
-  * can be done, with or without versioning
-  * can be applied with current and previous version
-  * can be set to expire 
-* what is server access logging
-* what is object level logging
-* what is default encryption
-* what is object lock
-* what is tags
-* what is events
-* what is requester pays
-* what is cross region replication
-  * cross region replication is a way to save selected or entire content of a bucket into another bucket in different region
-  * note that cross region replication, will affect new & updated files only, delete does not get automatically replicated
-  * delete markers are not replicated
-  * deleting individual file or version will not be replicated 
+  * S3 stands for Simple Storage Service
+  * it is an object store capable of holding flat files
+  * it is not suitable for hosting an operating system
+  * file size can range from 0 kb - 5 Tb
+  * files are stored in bucket
+  * bucket names have to be globally unique 
+  * succesful upload to S3 will return HTTP 200 code
+  * the consistency models are Read after Write consistency for PUT with new object & Eventual consistency for overwrite PUT and DELETE
+  * delete operations can be guarded using MFA Delete
+  * Content of file
+    * Key
+    * Value
+    * Version Id
+    * Metadata
+    * Subresources
+  * There are 6 storage classes
+    * S3 standard - 99.99% available, 11-9 durable, distributed and design to sustain concurrent failure of 2 data centers
+    * S3 IA - for data that is accessed less frequently, but needs to be accessed fast
+    * S3 One Zone IA - S3 IA with one zone
+    * S3 Intelligent Tiering - uses machine learning to shift data across various storage class
+    * S3 Glacier - secure, durable, low - cost storage class for data archival 
+    * S3 Glacier Deep Archive - takes 12 hours to get data being retrieved 
   
 ### Content Delivery Network
 * what is edge location
