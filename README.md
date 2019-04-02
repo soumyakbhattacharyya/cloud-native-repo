@@ -2,7 +2,9 @@
 1. [Scalability](#Scalability)
 2. [Amazon Web Service](#AWS)
 3. [System Design](#SystemDesign)
-    1. [Consistent Hashing](#ConsistentHashing) 
+    * [Load Balancing](#LoadBalancing)
+    * [Consistent Hashing](#ConsistentHashing) 
+    http://soumyakbhattacharyya.github.io/2019/03/27/load-balancer-basic/
 4. [Cloud Native Design](#CloudNative)
 
 # Questions
@@ -98,7 +100,8 @@
 * Foundational Concepts
   * System Design Basics
   * Key Attributes of Distributed System
-  * Load Balancing
+  * Load Balancing <a name="LoadBalancing"></a>
+    * http://soumyakbhattacharyya.github.io/2019/03/27/load-balancer-basic/
   * Caching
   * Data Partitioning 
   * Indexes
