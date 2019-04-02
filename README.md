@@ -4,7 +4,6 @@
 3. [System Design](#SystemDesign)
     * [Load Balancing](#LoadBalancing)
     * [Consistent Hashing](#ConsistentHashing) 
-    http://soumyakbhattacharyya.github.io/2019/03/27/load-balancer-basic/
 4. [Cloud Native Design](#CloudNative)
 
 # Questions
