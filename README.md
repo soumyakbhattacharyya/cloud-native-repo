@@ -201,7 +201,8 @@
   * it is not suitable for hosting an operating system
   * file size can range from 0 kb - 5 Tb
   * files are stored in bucket
-  * bucket names have to be globally unique 
+  * bucket names have to be globally unique
+  * bucket access can be limited using bucket ACL (basic read/write access to other AWS account) or bucket policy (fine grained access to S3 resources)
   * succesful upload to S3 will return HTTP 200 code
   * the consistency models are Read after Write consistency for PUT with new object & Eventual consistency for overwrite PUT and DELETE
   * delete operations can be guarded using MFA Delete
@@ -218,6 +219,23 @@
     * S3 Intelligent Tiering - uses machine learning to shift data across various storage class
     * S3 Glacier - secure, durable, low - cost storage class for data archival 
     * S3 Glacier Deep Archive - takes 12 hours to get data being retrieved 
+  * Explain basics of encryption for S3
+    * Encryption are of two kinds: Encryption in transit & Encryption at rest (Server Side)
+    * Encryption in transit is achived using SSL/TLS
+    * Encryption at rest is achived by 
+      * 3 flavours of Server Side Encryption (SSE)
+         * Where AWS manage the encryption key - SSE-S3
+         * Where customer and AWS jointly manage the key using Amazon Key Management Service - SSE - KMS
+         * Where customer manages the key all by itself - SSE - C
+      * Client managed encryption
+  * Explain versioning in S3
+    * Versioning is a property that requires to be enabled on a S3 bucket
+    * Versioning once enabled can only be suspended and not removed
+    * Versioning helps to keep all versions of an object
+    * However, public access requires to be enabled on individual version of an object; as it is not inherited from parent
+    * Deleting an object, puts a delete marker, which in turn is a new version after latest
+    * Delete marker is a soft delete mechanism, and to restore back a file, delete marker needs to be deleted
+    * Deleting a version specifically removes the version permanently from S3
   
 ### Content Delivery Network
 * what is edge location
