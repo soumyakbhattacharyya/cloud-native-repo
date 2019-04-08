@@ -265,8 +265,18 @@
   * it is possible to restrict user to be able to interact with cloudfront edge location which are cheaper than the other; at the cost of higher expense; however AWS ensures that user gets the content from the edge location with minimum latency, from the chosen cloudfront region
   
 ## Cloud Native Solution Architecture <a name="CloudNative"></a>  
+### References
+
+* https://medium.com/@FedakV/cloud-native-vs-lift-and-shift-which-way-to-choose-7dc89e1da906
+* https://medium.com/aws-enterprise-collection/cloud-native-or-lift-and-shift-99970053b25b
+* https://medium.com/aws-enterprise-collection/4-reasons-to-re-consider-lift-and-shift-to-the-cloud-e7cde603941e
+* https://medium.com/blue-harvest-tech-blog/a-swift-lift-and-shift-56bac50a04dd
+* https://blog.tidalmigrations.com/the-challenge-with-lift-and-shift-cloud-migrations-a6a9ca76d4c1
+* https://medium.com/devopslinks/the-fallacy-of-lift-and-shift-in-data-centre-migrations-fd73e2010736
+* https://medium.com/slalom-technology/is-lift-shift-actually-a-quick-and-painless-path-to-the-cloud-84084548f0d7
 
 ### Why Cloud Native solution architecture is required
+
 
 
 
