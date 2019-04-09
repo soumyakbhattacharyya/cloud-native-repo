@@ -274,6 +274,7 @@
 * https://blog.tidalmigrations.com/the-challenge-with-lift-and-shift-cloud-migrations-a6a9ca76d4c1
 * https://medium.com/devopslinks/the-fallacy-of-lift-and-shift-in-data-centre-migrations-fd73e2010736
 * https://medium.com/slalom-technology/is-lift-shift-actually-a-quick-and-painless-path-to-the-cloud-84084548f0d7
+* https://medium.com/aws-enterprise-collection/6-strategies-for-migrating-applications-to-the-cloud-eb4e85c412b4
 
 ### Why Cloud Native solution architecture is required
 
