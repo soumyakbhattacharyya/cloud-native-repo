@@ -279,7 +279,73 @@
 * how are user billed for using cloudfront
   * user is billed for storing data on S3, GETting content from cloudfront and performing PUT, POST, DELETE, PATCH, OPTION - ing to cloudfront
   * it is possible to restrict user to be able to interact with cloudfront edge location which are cheaper than the other; at the cost of higher expense; however AWS ensures that user gets the content from the edge location with minimum latency, from the chosen cloudfront region
-  
+
+### EC2<a name="EC2"></a>
+
+- what are prevalent pricing model for EC2
+  - on demand - pay a fixed rate per hour (or seconds) with no commitment
+  - reserve - have a 1 - 3 years contract with AWS for a capacity reservation, significant reduction in cost
+  - spot - bid for a price you want to capacity, and you get when the capacity is available in excess, also instances provisioned for you is revoked back, when demand surges; application with flexible start and end time can have these sort of instance, can be availed really cheap. remember in case of spot instances, if AWS terminates it, you do not have to pay for the hour, but if you terminate it, you need to pay for full hour during which you used it
+  - dedicated host - you get a physical server dedicated to you, useful when one needs to continue using his server bound licenses
+- what are reserved pricing types
+  - standard
+    - in this case, instance type of the reserved instances can not be altered in future; offers 75% savings over on demand
+  - convertible
+    - in this case, instance type can be changed; offers 54% savings
+  - scheduled
+    - available to be running during a schedule period of time
+- what are the instance type and what are the reason, they are being used for
+  - FIGHTDRMCPXZAU (fight dr. mac pixz au)
+    - F for FPGA
+    - I for IOPS
+    - G for Graphics
+    - H for High Disk Throughput
+    - T for General purpose
+    - D for Density 
+    - R for RAM
+    - M for main choice for general purpose app
+    - C for Compute
+    - P for Graphics (Pix)
+    - X for Extreme memory
+    - Z for Extreme memory and CPU
+    - A for ARM based processor
+    - U for Bare Metal
+- what are the key facts around EC2 instance
+  - termination protection is turned on (you can not terminate, by default)
+  - root volumes are deleted once the machine is terminated
+  - root volume can not be encrypted 
+  - non - root volumes can be encrypted
+- what is security group
+  - security group is a mechanism to define a local DMZ for the instance. 
+  - all inbound traffics are blocked by default, one needs to enable it, and it takes immediate effect
+  - allowing an inbound traffic, auto - allow outbound traffic too; deleting outbound traffic has no effect
+  - instance and security group has M-N relationship
+  - security group can not blacklist individual IP address or port
+  - security group can be attached with a running machine 
+- what is EBS (elastic block storage)
+  - elastic block storage is the hard drive for EC2 instances
+  - comes in 2 flavours
+    - SSD
+      - general purpose - takes up most workload, api name is gp1, volume is 1 GiB - 16 TiB; supports 16000 IOPS
+      - Provisioned IOPS SSD - backend for mission critical app, io1 is the api name, very high IOPS
+    - HDD
+      - Throughput optimized - for Big Data
+      - Cold - for file server
+      - Magnetic - legacy
+  - Volumes associated with an instance exists in EBS, EBS is virtual hard drive on cloud
+  - Snapshot of volume can be taken, the snapshot thus created exists in S3
+  - Snapshot of volume is incremental 
+  - While creating a snapshot for a volume that serves as root device for th instance, the instance is recommended to be stopped
+  - EBS volumes get created in the same availability zone, as that of the machine
+  - To migrate volumes, option 1 is to create snapshot of the volume, create AMI from it, and instantiate a new VM from the AMI to a new availability zone, option 2 is to create a snapshot of the volume, create AMI from it, and copy the AMI to new availability zone, and instantiate a machine in new zone
+  - Note, AMI can be created from volume or snapshot
+  - The size and type of volume can be changed at runtime
+- what is instance store
+  - it is possible to boot instances from AMI that supports instance store (instead of EBS store backed)
+  - instance stores are called ephemeral store, because if underlying hypervisor crashes, the data on instance store gets lost
+  - instance store backed instances can be rebooted and not stopped
+  - root volume irrespective of whether it sits on EBS store or instance store will get terminted
+
 ## Cloud Native Solution Architecture <a name="CloudNative"></a>  
 ### References
 
