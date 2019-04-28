@@ -1,6 +1,9 @@
 # Table of contents
 1. [Scalability](#Scalability)
 2. [Amazon Web Service](#AWS)
+    1. [IAM](#IAM)
+    2. [S3](#S3)
+    3. [CDN](#CDN)
 3. [System Design](#SystemDesign)
     * [Load Balancing](#LoadBalancing)
     * [Consistent Hashing](#ConsistentHashing) 
@@ -131,7 +134,7 @@
     * Load Balancer, Service Discovery, Authentication, Consistent Hashing, HTTP Websocket, Message Queue, Microservices, Polyglot Persistence
 
 ## AWS<a name="AWS"></a>
-### IAM
+### IAM<a name="IAM"></a>
 
 * what are the services offered by IAM
   * Centralized access management
@@ -149,6 +152,7 @@
   * policy is a JSON representation of policy document; governs how user, group and roles access AWS resources
   * role is associated with one aws resource in terms of accessing another aws resource
 * which is the region where latest products are lauched
+
   * US East (North Virginia)
 * what is the sign in url; what is it being used for
   * the sign in url represents the link that can be shared with users to login to AWS account
@@ -159,6 +163,7 @@
   * god mode
   * should be guarded with MFA
 * which region is guarded by IAM
+
   * global
 * what are the details that require to be provided while creating new user
   * if the user is going to have programmatic (api driven) and / or aws management console acces 
@@ -179,8 +184,10 @@
       }
       ```
 * how can password generation and management be customized
+
   * by altering password policy
 * what is roles
+
   * a way to ensure that one aws resource can access another aws service
 * what are various policies
   * aws managed policy
@@ -193,7 +200,7 @@
   * from billing section, select a matric EstimatedCharges and set a ceiling beyond which a notification is being sent
 
 
-### Storage
+### Storage<a name="S3"></a>
 
 * what is s3
   * S3 stands for Simple Storage Service
@@ -236,8 +243,17 @@
     * Deleting an object, puts a delete marker, which in turn is a new version after latest
     * Delete marker is a soft delete mechanism, and to restore back a file, delete marker needs to be deleted
     * Deleting a version specifically removes the version permanently from S3
-  
-### Content Delivery Network
+  * Explain lifecycle rules in S3
+    * Lifecycle rules governs the lifecycle management of object, in a bucket
+    * Having 'Versioning' turned on, is not a pre-requisite for the configuring lifecycle rule, however, having it, would make current & previous versions open to being lifecycle rule managed
+    * It manages transition of object from one class of storage to the other
+    * it manages expiration of object
+    * can have tag, objects with the same tag, gets subjected to the lifecycle rule
+    * this can be configured for current and previous version
+      * multiple transition can be configured to move the object from one class of storage to the other, after configured number of days have elapsed, counted since the time the object was created
+    * the expiration of the object can be configured as well (for current and previous versions)
+
+### Content Delivery Network<a name="CDN"></a>
 * what is edge location
   * edge location are those servers which caches the content; different than region/availabiity zone
 * what is orgin
@@ -290,4 +306,4 @@
 ### What are the testing pattern in Cloud Native solution architecture 
 ### What are the monitoring pattern in Cloud Native solution architecture 
 ### What are the security related patterns in Cloud Native solution architecture
-  
+
