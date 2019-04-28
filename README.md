@@ -344,7 +344,11 @@
   - it is possible to boot instances from AMI that supports instance store (instead of EBS store backed)
   - instance stores are called ephemeral store, because if underlying hypervisor crashes, the data on instance store gets lost
   - instance store backed instances can be rebooted and not stopped
-  - root volume irrespective of whether it sits on EBS store or instance store will get terminted
+  - root volume irrespective of whether it sits on EBS store or instance store will get terminated
+- explain encryption in relation to volume
+  - snapshot of encrypted volume is encrypted automatically and volume restored from encrypted snapshot are encrypted
+  - snapshot only if unencrypted can be shared with other account
+  - to create an encrypted volume from an unencrypted volume, first snapshot of the unencrypted volume requires to be taken, then the snapshot need to be copied and while doing a copy encrypt option must be selected; after that if we create an AMI from the snapshot the AMI will always have encrypted volume
 
 ## Cloud Native Solution Architecture <a name="CloudNative"></a>  
 ### References
