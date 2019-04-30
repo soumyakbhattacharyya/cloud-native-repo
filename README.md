@@ -4,6 +4,7 @@
     1. [IAM](#IAM)
     2. [S3](#S3)
     3. [CDN](#CDN)
+    4. [EC2](#EC2)
 3. [System Design](#SystemDesign)
     * [Load Balancing](#LoadBalancing)
     * [Consistent Hashing](#ConsistentHashing) 
@@ -349,6 +350,38 @@
   - snapshot of encrypted volume is encrypted automatically and volume restored from encrypted snapshot are encrypted
   - snapshot only if unencrypted can be shared with other account
   - to create an encrypted volume from an unencrypted volume, first snapshot of the unencrypted volume requires to be taken, then the snapshot need to be copied and while doing a copy encrypt option must be selected; after that if we create an AMI from the snapshot the AMI will always have encrypted volume
+- what is cloud watch & cloud trail
+  - CloudWatch is being used to monitor performance; it can monitor most of the aws as well as applications that run on aws; by default CloudWatch monitor every 5 min.; this can be reduced to every 1 min via paid plan; it is possible to create CloudWatch alarms that creates notification
+  - can create dashboard to show what is happening in aws
+  - CloudWatch publishes events and it is possible to respond to state change of aws resources. CloudWatch also provides logs that can be aggregated, monitored and stored
+  - Cloudtrail is used for a different purpose, where all pi interaction done with aws resources are being audited
+- explain roles 
+  - Roles are a mechanism to make one instance interact with other AWS services under the account, without explicitly configuring access key and secret key inside the instance, so as to do so. This way an instance can upload a file to S3, without having require the access and secret key being configured.
+  - Roles are more secure than the access/secret key mechanism.
+  - Roles are global.
+  - Roles can be assigned to EC2 instance after it has been created from attached/replaced from the EC2 menu 
+- what is bootstrap script
+  - bootstrap scripts are scripts executed after an instance boots up; by default bash shell script on aws linux vm is supported
+- what is metadata
+  - for a given ec2 instance, there are lot of metadata associated with the instance
+  - while within an instance, metadata can be obtained by issuing curl command to http://169.254.169.254/latest/user-metadata endpoint; actually 169.254.0.0/16 are reserved ip addresses where from an instance can receives a whole lot about it's own by using curl command
+- what is EFS
+  - Elastic File Storage is a Network File System that supports Network File System Version 4 (NFSV4) protocol
+  - There is no upfront cost as you pay for what you use
+  - Can scale upto petabyte 
+  - Can support thousands of concurrent NFS connection
+  - Data is stored across multiple availability zones in a region
+  - Read after write consistency is supported 
+- what is placement group
+  - a placement group is a way of grouping instances into
+    - a cluster placement group
+      - can not span multiple availability zones
+    - a spread placement group
+      - can span multiple availability zones
+  - name of the placement group has to be unique in aws account
+  - placement groups can not be merged 
+  - it is not possible to move existing instance into a placement group
+  - it is recommended to have homogenous instances within a placement group
 
 ## Cloud Native Solution Architecture <a name="CloudNative"></a>  
 ### References
