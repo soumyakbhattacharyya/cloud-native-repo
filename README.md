@@ -5,6 +5,7 @@
     2. [S3](#S3)
     3. [CDN](#CDN)
     4. [EC2](#EC2)
+    5. [Database](#Database)
 3. [System Design](#SystemDesign)
     * [Load Balancing](#LoadBalancing)
     * [Consistent Hashing](#ConsistentHashing) 
@@ -97,7 +98,7 @@
   * scalability concerns requires to be taken into account right at the stage when software is being implemented
   * the axes that requires scalability needs to be identified upfront
   * measures taken to ensure redundancy and factors like growing heterogeneity of infrastructure platforms causes sclability to get affected; making it all the more harder
-  
+
 ## System Design <a name="SystemDesign"></a>
 
 * Foundational Concepts
@@ -382,6 +383,66 @@
   - placement groups can not be merged 
   - it is not possible to move existing instance into a placement group
   - it is recommended to have homogenous instances within a placement group
+
+### Database<a name="Database"></a>
+
+- what are the supported databases on AWS
+  - SQL Server, Oracle, Postgress, Aurora, MariaDB, MySQL
+- what are two key features
+  - multi - AZ for disaster recovery
+    - amazon provides a dns address for applications to connect to a primary instance of a database,  should the primary instance fail, amazon automatically routes the traffic to the secondary back up instance
+    - multi - AZ makes keeping of another copy of production database into availability zone; aws handles automatic replication; during planned outage or db instance failure or AZ failure, automatically traffic arriving into primary datastore is routed into secondary database.
+  - read replica for disaster recovery
+    - amazon provides creating a replica of primary database; in case primary database fails, applications requires to connect to the replica using a different connection string; this is in contrast to previous one, where the dns address would not change.
+    - note, writes are eventually propagated into the replica; these replica can be  used to set up copies of main database from where reading can happen.
+    - available for MySQL, PostgresSQL, MariaDB and Aurora.
+    - automatic backup should be turned on to be able to deploy read replica.
+    - there can be at max 5 replica. replica can have replica. 
+    - read replica mechanism is used to boost performance and not for disaster recovery.
+    - read replica can be across multiple availability zone
+    - read replicas can be promoted to be primary database effectively breaking the replication set up
+    - it is possible to have a read replicate in a separate second region so you can have a read replicate in a completely separate region than to your primary database.
+- what is the nosql solution from amazon
+  - dynamodb is the nosql solution from amazon
+- what is amazon redshift
+  - this is a data warehouse solution that supports online analytic processing
+- what is elastic cache
+  - elastic cache is a solution to support in memory caching, it supports two open source implementations out of the box, namely memcache and redis
+- what does it takes to connect from an ec2 instance to a RDS instance
+  - the security group of the instance should be allowed in the security group of RDS
+- what is automatic backup for the database
+  - aws allows restoration of database during anytime within retention period. retention period of aws is within 1 - 35 days. within the retention period, a second level restoration is supported. it also tracks transaction log for a day within the retention period. while asking to restore aws will choose most recent daily backup and replay transaction log relevant to that backup.
+  - automated backups are enabled by default, aws backs up database into S3. aws automatically allocate a s3 storage equal to the size of the database. backups are being taken within specific window, during this window elevated latency may be observed
+- what is db snapshot
+  - db snapshot needs to be taken manually; unlike backups which are being done automatically, db snapshots outlives the database even after original RDS instance has gone off
+- what would happen during restoration process
+  - restoration can be done from snapshot or backup, however any restoration process creates a brand new RDS instance with new endpoint
+- how is encryption supported
+  - encryption is supported via aws KMS. once RDS instance is encrypted, snapshot, read - replicas backup etc. are all encrypted
+- what is dynamodb
+  - it is the nosql solution from amazon; supports both document and key - value type storage
+  - it is stored on SSD
+  - spreaded across 3 data centers across 3 distinct region
+  - supports eventual consistency (when you need to read an updated value of a field, within 1 second of update) 
+  - supports strong consistency when otherwise
+- what is redshift
+  - redshift is petabyte scale data warehouse solution from amazon; typical on - boarding cost is $0.25 per hour reaching upto 1000 terabyte per year, costing less than 10% of existing solution
+  - redshift is configured as leader node (160 gb.; makes client communication and receives query) and compute nodes (can be max 128 per leader node; stores data and performs queries and computation)
+  - note, redshift applies columner compression instead of row - based compression technique; to be able to keep similar type of data in adjacent places; redshift does not require indexes or materialzed view and while loading data into empty table it determines appropriate compression technique
+  - 1-35 days retention period
+  - maintains 3 copies of the data including original, on compute and on S3; 
+  - compute node hours are charged, leader node hours are not charged; data transfer is charged within VPC and not outside of it
+  - data in transit using SSL
+  - at rest encrypted using AES 256
+  - currently only available in 1 AZ
+  - snapshot can be restored in any availability zone
+- what is amazon aurora
+  - TBD
+- what is elasticache
+  - elasticache is an easy to deploy, operate and scale in-memory caching in the cloud and the service improves the performance of Web applications by allowing you to retrieve information from fast managed in memory caches instead of relying on slower disk paste databases. 
+  - used to increase web and db performance
+  - redis is multi AZ
+  - memcached can be scaled horizontally
 
 ## Cloud Native Solution Architecture <a name="CloudNative"></a>  
 ### References
