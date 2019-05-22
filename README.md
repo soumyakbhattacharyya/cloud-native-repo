@@ -6,6 +6,7 @@
     3. [CDN](#CDN)
     4. [EC2](#EC2)
     5. [Database](#Database)
+    6. [Route53](#Route53)
 3. [System Design](#SystemDesign)
     * [Load Balancing](#LoadBalancing)
     * [Consistent Hashing](#ConsistentHashing) 
@@ -443,6 +444,10 @@
   - used to increase web and db performance
   - redis is multi AZ
   - memcached can be scaled horizontally
+
+### Route53<a name="Route53"></a>
+
+- 
 
 ## Cloud Native Solution Architecture <a name="CloudNative"></a>  
 ### References
