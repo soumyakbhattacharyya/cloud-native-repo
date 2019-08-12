@@ -8,6 +8,7 @@
     5. [Database](#Database)
     6. [Route53](#Route53)
     7. [VPC](#VPC)
+    8. [Serverless](#ServerLess)
 3. [System Design](#SystemDesign)
     * [Load Balancing](#LoadBalancing)
     * [Consistent Hashing](#ConsistentHashing) 
@@ -456,29 +457,41 @@
   - IGWs (or Virtual Private Gateway), Route table, Network Access List, Subnets and Security Group
     - Note, Network Access List are stateless and Security Groups are stateful
   - VPN between corporate data center and cloud
+
 - A VPC belongs to a region; traffic enters VPC via internet gateway and virtual private gateway -> router -> route table -> network acl -> security group -> instance 
+
 - the instances are grouped into subnets; namely public subnet and private subnet
+
 - 1 subnet = 1 availability zone
+
 - a public subnet is that where the member instances can accesses internet
+
 - a private subnet is that where the member instances can not access the internet
+
 - instances belonging to private subnet, can be reached via public subnets, the machines that facilitates it, are being called as jump boxes
+
 - in summary
   - we can launch instances into a subnet of our choosing.
   - we can choose our own subnet address ranges.
   - we can assign custom IP address ranges in each subnet.
   - we can configure route tables between our subnets.
   - we can create Internet gateways and attach it to our VPC and we get much better security controls over our AWS resources and we can assign security groups to individual instances but we can also have subnet network access control lists or AC ls as well.
+
 - what is the difference between default VPC and custom VPC
   - by default all machines are instantiated inside default VPC
   - all subnets within default VPC has internet access
   - custom VPC is something we build from scratch 
+
 - what is VPC peering
   - VPC peering, is a way by which one VPC can connect with another VPC via direct network route using private network addresses
   - VPC peering is a star configuration, and will not allow transitiveness
   - it is possible to create VPC peering between VPC belonging to same account and across account
   - VPC peering is now possible across regions
+
 - how to create a VPC
+
   - <https://keep.google.com/u/0/#NOTE/148UJTj_4XcU4YSF13MRoE9uaenBXgsg8gz3DL-nAm6v5PSS2Uk9LakzhzyXk6GUcHpQ>
+
 - what is Network Address Translation (NAT), NAT instances and NAT Gateway 
   - NAT device enables instances in a private subnet to connect to the internet (for example, for software updates) or other AWS services, but prevent the internet from initiating connections with the instances. 
   - A NAT device forwards traffic from the instances in the private subnet to the internet or other AWS services, and then sends the response back to the instances. When traffic goes to the internet, the source IPv4 address is replaced with the NAT device’s address and similarly, when the response traffic goes to those instances, the NAT device translates the address back to those instances’ private IPv4 addresses.
@@ -487,6 +500,44 @@
   - There must be a route from private subnet to NAT instance; so that traffic originating from the private subnet can reach to the NAT instance
   - The amount of traffic that NAT instance can support depends on the instance size
   - High availability can be achieved by using auto - scaling group, subnets on differed availability zones etc. 
+
+  ### Serverless<a name="ServerLess"></a>
+
+  - What is AWS Lambda
+    - AWS Lambda is a serverless technology?
+    - AWS Lambda is an abstraction on top of data center, hardware, assembly language, operating system, high level language, applications & api layers
+    - It is a compute service where developer can upload the code and it is automatically deployed at runtime
+  - How are Lambda being used for?
+    - AWS Lambda can be used on occurrence of event; in this case AWS Lambda function runs on being triggered by an event happening within the system
+    - Lambda can run on to serve an response to a HTTP request that arrives to the system via API gateway
+  - What is the difference between Traditional vs. Serverless architecture?
+    - In traditional architecture
+      - The request comes to route53
+      - Then it reaches Amazon Elastic Load Balancer
+      - Finally it reaches to EC2 instances where the application is running
+    - In serverless architecture
+      - The request comes to amazon API gateway
+      - Then in reaches to lambda 
+      - Finally the lambda makes call to other lambda or uses some other AWS service
+  - How lambda is priced
+    - Number of request; first 1 M requests are free; 20 cents thereafter
+    - Duration, how long the function runs
+  - What are key value proposition of lambda
+    - Cheap
+    - Scalable
+    - Serverless !!!
+  - What are key feature of Lambda
+    - lambda scales out... not scale up
+    - lambda are independent ... one event one lambda 
+    - these are serverless
+    - aurora is only rds serverless; dynamodb, s3 etc are all serverless
+    - architecture can get complicated, aws x - ray service allows to debug
+    - lambda can do things globally
+    - 
+
+  
+
+   
 
 ## Cloud Native Solution Architecture <a name="CloudNative"></a>  
 ### References
