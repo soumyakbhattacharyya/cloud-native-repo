@@ -7,6 +7,7 @@
     4. [EC2](#EC2)
     5. [Database](#Database)
     6. [Route53](#Route53)
+    7. [VPC](#VPC)
 3. [System Design](#SystemDesign)
     * [Load Balancing](#LoadBalancing)
     * [Consistent Hashing](#ConsistentHashing) 
@@ -448,6 +449,44 @@
 ### Route53<a name="Route53"></a>
 
 - 
+
+### VPC<a name="VPC"></a>
+
+- VPC is logical data center within amazon web service; it can have
+  - IGWs (or Virtual Private Gateway), Route table, Network Access List, Subnets and Security Group
+    - Note, Network Access List are stateless and Security Groups are stateful
+  - VPN between corporate data center and cloud
+- A VPC belongs to a region; traffic enters VPC via internet gateway and virtual private gateway -> router -> route table -> network acl -> security group -> instance 
+- the instances are grouped into subnets; namely public subnet and private subnet
+- 1 subnet = 1 availability zone
+- a public subnet is that where the member instances can accesses internet
+- a private subnet is that where the member instances can not access the internet
+- instances belonging to private subnet, can be reached via public subnets, the machines that facilitates it, are being called as jump boxes
+- in summary
+  - we can launch instances into a subnet of our choosing.
+  - we can choose our own subnet address ranges.
+  - we can assign custom IP address ranges in each subnet.
+  - we can configure route tables between our subnets.
+  - we can create Internet gateways and attach it to our VPC and we get much better security controls over our AWS resources and we can assign security groups to individual instances but we can also have subnet network access control lists or AC ls as well.
+- what is the difference between default VPC and custom VPC
+  - by default all machines are instantiated inside default VPC
+  - all subnets within default VPC has internet access
+  - custom VPC is something we build from scratch 
+- what is VPC peering
+  - VPC peering, is a way by which one VPC can connect with another VPC via direct network route using private network addresses
+  - VPC peering is a star configuration, and will not allow transitiveness
+  - it is possible to create VPC peering between VPC belonging to same account and across account
+  - VPC peering is now possible across regions
+- how to create a VPC
+  - <https://keep.google.com/u/0/#NOTE/148UJTj_4XcU4YSF13MRoE9uaenBXgsg8gz3DL-nAm6v5PSS2Uk9LakzhzyXk6GUcHpQ>
+- what is Network Address Translation (NAT), NAT instances and NAT Gateway 
+  - NAT device enables instances in a private subnet to connect to the internet (for example, for software updates) or other AWS services, but prevent the internet from initiating connections with the instances. 
+  - A NAT device forwards traffic from the instances in the private subnet to the internet or other AWS services, and then sends the response back to the instances. When traffic goes to the internet, the source IPv4 address is replaced with the NAT device’s address and similarly, when the response traffic goes to those instances, the NAT device translates the address back to those instances’ private IPv4 addresses.
+  - Because a NAT instance works as intermediary between an instance and internet; source and destination checking requires to be disabled on the NAT instance
+  - NAT instance must be in public subnet
+  - There must be a route from private subnet to NAT instance; so that traffic originating from the private subnet can reach to the NAT instance
+  - The amount of traffic that NAT instance can support depends on the instance size
+  - High availability can be achieved by using auto - scaling group, subnets on differed availability zones etc. 
 
 ## Cloud Native Solution Architecture <a name="CloudNative"></a>  
 ### References
