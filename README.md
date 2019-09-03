@@ -9,6 +9,7 @@
     6. [Route53](#Route53)
     7. [VPC](#VPC)
     8. [Serverless](#ServerLess)
+    9. [Application](#Application)
 3. [System Design](#SystemDesign)
     * [Load Balancing](#LoadBalancing)
     * [Consistent Hashing](#ConsistentHashing) 
@@ -533,11 +534,80 @@
     - aurora is only rds serverless; dynamodb, s3 etc are all serverless
     - architecture can get complicated, aws x - ray service allows to debug
     - lambda can do things globally
-    - 
 
   
 
-   
+  ### Application<a name="Appliction"></a>
+
+- What is SQS
+  - Amazon SQS is a distributed message queue
+  - The queue acts as buffer between message producer and consumer
+  - There are two types of queue 1) standard and 2) FIFO
+  - The standard queue will deliver message at least once, no limit on number of transactions per second; message size can be 256 kb, beyond that S3 would have to be used; because of the distributed nature, messages can be delivered out of order, more than once; the sequencing of messages are attained on best effort basis
+  - The FIFO will maintain the order of messages FIFO; does not allow duplicate; the message is delivered once and remains available until it is processed; have 300 transactions per second; supports message groups which essentially are packs of ordered message
+  - SQS is pull based and not push based
+  - Messages are kept for in the queue for 1 min. - 14 days; by default messages are kept for 4 days
+  - Visibility timeout - indicates the period of time, after which a message shows up again in the queue, if the earlier job that picked up the message is not able to process it within the visibility timeout period; visibility timeout is defaulted at 12 hrs.; 
+  - SQS short polling returns immediately even when the message queue is empty; whereas Long Polling does not return until, there is a message or the long polling has timed out
+  
+- What is SWF
+    - Simple Workflow Service, helps in co-ordinating works across distributed application components
+  - Comprises of tasks which can be done via human interaction, external API invocation, application component invocation and execution of script
+    - Difference between SWF & SQS
+      - SQS has retention period of 14 days while SWS has 1 year
+      - SQS has message oriented API and SWF has task oriented API
+      - SQS can have duplicated messages (for messages that are not processed within visibility timeout) while SWF delivers one and only one task
+      - SWF keeps track of all tasks happening in an application 
+      - SWF has actors
+        - Workflow starter - application that initiates a workflow
+        - Deciders - that controls the flow of activity; tracks finished or failed tasks and takes necessary action
+        - Activity workers - what executes the task 
+  - What is SNS
+    - SNS is a simple service that is used to push notification from cloud
+    - SMS, Email, SQS posting are all supported
+    - Offers 'Topic' where subscriber can subscribe to get the notification
+    - SNS messages are stored redundantly across multiple AZs
+    - SNS is push based
+    - It is inexpensive
+    - Flexible delivery over multiple protocol
+    - Major difference with SQS is it is poll based and SNS is push based
+  - What is Elastic transcoder
+    - Elastic transcoder is a media transformer that transcodes videos from one format to another
+    - The minutes to convert and the resolution of the file determines billing
+  - What is API Gateway
+    - It can
+      - Expose HTTP/HTTPS endpoint
+      - Connect to services
+      - Send each API to target
+      - Low cost, scale
+      - Track
+      - Throttle
+      - CloudWatched
+      - Supports versions
+    - Door to AWS environment
+    - Cache can be enabled
+    - Low cost, scales
+    - CORS is required to be enabled for API gateway to be able to invoke other endponts 
+    - Configuration
+      - Define an API
+      - Define resource/nested resource
+      - Define HTTP method
+      - Define Security
+      - Choose target
+      - Define transformation
+  
+- Kinesis
+
+    - What is streaming
+      - Streaming concept - a continuous flow of data in small chunk getting delivered from a number  of parallel sources/streams
+    - What is kinesis
+      - Kinensis is a service where we can send our streams to
+    - What are kinesis flavour
+      - 3 - Kinensis stream, Kinesis firehose, Kinesis analytics
+    - What is kinensis stream
+      - Kine 
+
+     
 
 ## Cloud Native Solution Architecture <a name="CloudNative"></a>  
 ### References
@@ -550,19 +620,4 @@
 * https://medium.com/devopslinks/the-fallacy-of-lift-and-shift-in-data-centre-migrations-fd73e2010736
 * https://medium.com/slalom-technology/is-lift-shift-actually-a-quick-and-painless-path-to-the-cloud-84084548f0d7
 * https://medium.com/aws-enterprise-collection/6-strategies-for-migrating-applications-to-the-cloud-eb4e85c412b4
-
-### Why Cloud Native solution architecture is required
-
-
-
-
-### What is Cloud Native solution architecture
-### How to achive Cloud Native solution architecture
-### What are the foundational design patterns in Cloud Native solution architecture
-### What are the boundary design patterns in Cloud Native solution architecture 
-### What are the control design patterns in Cloud Native solution architecture 
-### What are the deployment pattern in Cloud Native solution architecture 
-### What are the testing pattern in Cloud Native solution architecture 
-### What are the monitoring pattern in Cloud Native solution architecture 
-### What are the security related patterns in Cloud Native solution architecture
 
