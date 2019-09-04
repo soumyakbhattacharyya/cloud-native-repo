@@ -605,8 +605,38 @@
     - What are kinesis flavour
       - 3 - Kinensis stream, Kinesis firehose, Kinesis analytics
     - What is kinensis stream
-      - Kine 
+      - Kinesis streams are destinations where producers can stream in data. The data is persisted for 24 hrs. - 7 days. The data is kept in shards. The consumer can go into the shard and analyze the data.
+      - 5 read type transaction per second totaling upto 2 Mb data capacity per second is the limit
+      - 1000 write transactions per second totaling upto 1 Mb write volume per second is the limit 
+      - Capacity of a stream = Total of capacity combining all shards
+    - What is Kinesis firehose
+      - Kinensis firehose is a destination where producers can stream in data. However unlike Kinesis stream, the data is not persistent. Hence, as soon as data reaches firehose, an action has to be immediately taken,
+    - What is kinesis analytics
+      - It is a service to analyze data found inside the stream and firehose
 
+- Cognito
+
+    - What is web identity federation
+        - Facebook, Github etc. are web identity provider.
+    - Web identity federation is a mechanism of authenticating an user against web id provider.
+        - User authenticates against web id provider, receives JWT, issues JWT with Cognito to get access to various AWS resources
+    - What are the features provided by cognito
+        - Sign - up and sign - in facility for the registered app
+        - Access to guest user
+        - broker between app and web id provider service like facebook
+        - syncronize user data across devices
+    - Explain a typical flow
+        - User issues an authentication request to web id provider
+        - The web id provider sends back a JSON Web Token (JWT), if the user is authenticated
+        - The app sends the JWT to Cognito, which returns back set of appropriate roles that the user can assume
+        - The user access AWS resources
+    - What is user pool
+        - User pool is a user directory, used to manage sign up and sign in. Users can sign in directly to Cognito or via 3rd party web id provider (facebook, amazon, github). Cognito works as broker between the app and 3rd party web id provider.
+    - What is identity pool
+        - Identity pool are mechanism to grant temporary access to AWS resources 
+    - How does Cognito synchronizes between multiple devices
+        - Cognito tracks association between an user id and associated devices; therefore if attributes of user gets updated, Cognito uses SNS push notification to update all associated devices.
+    
      
 
 ## Cloud Native Solution Architecture <a name="CloudNative"></a>  
