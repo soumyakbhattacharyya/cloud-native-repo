@@ -10,6 +10,7 @@
     7. [VPC](#VPC)
     8. [Serverless](#ServerLess)
     9. [Application](#Application)
+    10. [HA](#HA)
 3. [System Design](#SystemDesign)
     * [Load Balancing](#LoadBalancing)
     * [Consistent Hashing](#ConsistentHashing) 
@@ -636,6 +637,29 @@
         - Identity pool are mechanism to grant temporary access to AWS resources 
     - How does Cognito synchronizes between multiple devices
         - Cognito tracks association between an user id and associated devices; therefore if attributes of user gets updated, Cognito uses SNS push notification to update all associated devices.
+    
+    
+    
+    ### HA<a name="HA"></a>
+    
+    - What is load balancer
+      - AWS Elastic Load Balancer balances load
+      - There are 3 types of load balancer, 1) Application 2) Network and 3) Classic
+      - Application load balancer are smart, they operate at layer 7, does smart routing of http and https traffic
+      - Network load balancer operate at layer 4; they balances TCP traffic at layer 4, they are extremely performant; handles high volume of requests, while operating at a very low latency
+      - Classic load balancer performs typical load balancing acts
+      - In case 504 HTTP Gateway timeout error is being thrown, it typically signifies the response generating server is unresponsive
+      - ELB works as intermediate between browser and server; therefor to fetch the IP of the requesting client, X-Forwarded-For header requires to be looked up, to find the IP of the browser client, otherwise, load balancer IP would be returned, if the server attempts to find the requester's IP by normal means 
+      - Instances monitored by the load balancers are either InService or OutOfService
+      - ELB does a health check to see if instances managed by the load balancer are reachable 
+      - Load Balancer always gets a DNS name and not an IP address
+    - What is sticky session
+      - Sticky session enables user to be always routed to same EC2 instance.
+    - What is cross region load balancing
+      - By default load balancing does not happen across multiple availability zones
+      - Enabling CRLB ensure that happens
+    - What is path pattern
+      - Path pattern is a smart way of routing traffic based on url path structure
     
      
 
