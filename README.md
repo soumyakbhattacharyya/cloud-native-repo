@@ -536,10 +536,38 @@
     - architecture can get complicated, aws x - ray service allows to debug
     - lambda can do things globally
 
+  Review Questions
+
+  1. lambda
+
+     1. lambda in VPC
+        1. by default which VPC the lambda is associated with 
+        2. what are required to be configured to enable lambda in vpc
+        3. what role does the lambda would require to have to be able to operate from a vpc
+        4. what is elastic network interface
+        5. can a lambda access internet while being part of public subnet of vpc
+        6. how can a lambda be given access to external api from within a vpc
+        7. how can a lambda access aws services without a NAT
+     2. lambda performance
+        1. how much is minimum RAM that can be configured
+        2. how much is maximum RAM that can be configured
+        3. how much is the maximum timeout
+        4. where can a file be stored temporarily before processing it
+        5. what is execution context
+        6. how long does the execution context stays
+        7. where to put the initialization code in lambda
+     3. lambda concurrency
+        1. how concurrency is controlled in lambda
+        2. what is the default maximum number of concurrency in lambda
+        3. what reserved concurrency
+        4. what is provisioned concurrency
+        5. what happens when asynchronous invocations gets throttled
+        6. how has the vpc bound lambda cold start issue been addressed 
   
-
+     
+  
   ### Application<a name="Appliction"></a>
-
+  
 - What is SQS
   - Amazon SQS is a distributed message queue
   - The queue acts as buffer between message producer and consumer
